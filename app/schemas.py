@@ -12,7 +12,6 @@ class ItemGet(ItemCreate):
     status: str | None
     class Config:
         from_attributes = True  # Allows conversion from SQLAlchemy model
-        orm_mode = True
         # model_cofig= True
 
 # Schema for updating an item (request body validation)
@@ -23,4 +22,21 @@ class ItemUpdate(BaseModel):
 
     class Config:
         from_attributes = True
-        orm_mode = True
+class UserCreateRequest(BaseModel):
+    name: str
+    email: str
+    first_name: str
+    last_name: str
+    role: str
+    password: str
+    class Config:
+        from_attributes = True
+
+class LoginRequest(BaseModel):
+    email: str
+    password: str
+
+class AccessTokenResponse(BaseModel):
+    access_token: str
+    token_type: str
+      

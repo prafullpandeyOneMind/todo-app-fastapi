@@ -1,5 +1,6 @@
 from pydantic import BaseModel
-
+from typing import Optional
+from datetime import datetime
 # Schema for creating an item (request body validation)
 class ItemCreate(BaseModel):
     name: str
@@ -13,6 +14,23 @@ class ItemGet(ItemCreate):
     class Config:
         from_attributes = True  # Allows conversion from SQLAlchemy model
         # model_cofig= True
+
+class EmployeesGet(BaseModel):
+    id: int
+    user_id: int
+    date_joined: datetime
+    total_experience_in_months: Optional[int] = 0
+    designation: Optional[str] = "Majdur"
+    class Config:
+        from_attributes = True
+        
+
+class EmployeeCreate(BaseModel):
+    user_id: int
+    date_joined: datetime
+    total_experience_in_months: int
+    designation: str
+
 
 # Schema for updating an item (request body validation)
 class ItemUpdate(BaseModel):

@@ -2,7 +2,8 @@ from fastapi import FastAPI
 from contextlib import asynccontextmanager
 from .models import Base
 from .database import  engine
-from app.routers import auth,todos
+from app.routers import auth,todos, employees
+
 # Modern lifespan handler (replaces startup/shutdown events)
 @asynccontextmanager
 async def lifespan(app: FastAPI):
@@ -17,5 +18,6 @@ async def lifespan(app: FastAPI):
 app = FastAPI(lifespan=lifespan)
 app.include_router(auth.router)
 app.include_router(todos.router)
+app.include_router(employees.router)
 
 

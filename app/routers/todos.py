@@ -23,7 +23,6 @@ async def create_item(
     return db_item  # Return the item (converted to JSON via schemas.Item)
 
 
-
 # Get an item by ID
 @router.get("/items", response_model=list[ItemGet])
 async def read_item(
